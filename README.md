@@ -190,33 +190,6 @@ Build strong foundations in Machine Learning and gradually progress toward becom
 
 ---
 
-## 📈 Progress
-
-| Area | Status |
-|---|---|
-| NumPy | ✅ Completed |
-| Pandas | ✅ Completed |
-| Matplotlib | ✅ Completed |
-| Seaborn | ✅ Completed |
-| Label Encoding | ✅ Completed |
-| Ordinal Encoding | ✅ Completed |
-| One-Hot Encoding | 🔄 Upcoming |
-| Feature Scaling | ⏳ |
-| EDA | ⏳ |
-| Regression | ⏳ |
-| Classification | ⏳ |
-| Decision Trees | ⏳ |
-| Random Forest | ⏳ |
-| Bagging | ⏳ |
-| AdaBoost | ⏳ |
-| Gradient Boosting | ⏳ |
-| XGBoost | ⏳ |
-| Unsupervised Learning | ⏳ |
-| ML Projects | ⏳ |
-| Deployment & MLOps | ⏳ |
-
----
-
 ## 🛠️ Tools & Technologies
 
 - Python
