@@ -1,5 +1,4 @@
 
-Principal Component Analysis (PCA) README
 
 Principal Component Analysis (PCA) is an unsupervised machine learning technique used to reduce the dimensionality of large datasets while preserving as much variance (information) as possible. It transforms a large set of correlated variables into a smaller set of uncorrelated variables called Principal Components.
 
