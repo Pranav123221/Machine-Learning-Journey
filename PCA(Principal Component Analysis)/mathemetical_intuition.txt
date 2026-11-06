@@ -1,0 +1,375 @@
+# PCA — Mathematical Formulas and Derivations
+
+## 1. Mean
+
+Mean = Sum of all observations / Number of observations
+
+μ = (x₁ + x₂ + ... + xₙ) / n
+
+Example:
+
+X = [2, 4, 6, 8, 10]
+
+μ = 30 / 5 = 6
+
+---
+
+## 2. Variance
+
+Population Variance:
+
+σ² = Σ(xᵢ − μ)² / n
+
+Sample Variance:
+
+s² = Σ(xᵢ − x̄)² / (n − 1)
+
+Example:
+
+X = [2, 4, 6, 8, 10]
+
+Mean = 6
+
+s² = [(2−6)² + (4−6)² + (6−6)² + (8−6)² + (10−6)²] / 4
+
+s² = (16 + 4 + 0 + 4 + 16) / 4
+
+s² = 40 / 4
+
+s² = 10
+
+---
+
+## 3. Standard Deviation
+
+σ = √(σ²)
+
+Sample standard deviation:
+
+s = √(s²)
+
+---
+
+## 4. Standardization (Z-score)
+
+zᵢ = (xᵢ − μ) / σ
+
+After standardization:
+
+Mean = 0
+
+Variance = 1
+
+---
+
+## 5. Covariance
+
+Cov(X,Y) = Σ[(xᵢ − x̄)(yᵢ − ȳ)] / (n − 1)
+
+Interpretation:
+
+- Cov(X,Y) > 0 : Positive covariance
+- Cov(X,Y) < 0 : Negative covariance
+- Cov(X,Y) = 0 : Zero linear covariance
+
+Important identity:
+
+Var(X) = Cov(X,X)
+
+---
+
+## 6. Covariance Matrix
+
+For two features:
+
+C = | Var(X₁)       Cov(X₁,X₂) |
+    | Cov(X₂,X₁)    Var(X₂)    |
+
+For a centered dataset:
+
+C = XᵀX / (n − 1)
+
+Properties:
+
+C = Cᵀ
+
+The covariance matrix is symmetric.
+
+---
+
+## 7. Projection
+
+Projection of one observation:
+
+z = xᵀw
+
+Projection of the complete dataset:
+
+Z = Xw
+
+Normalization constraint:
+
+wᵀw = 1
+
+---
+
+## 8. Projected Variance
+
+Var(Z) = ZᵀZ / (n − 1)
+
+Since Z = Xw:
+
+Var(Z) = (Xw)ᵀ(Xw) / (n − 1)
+
+Var(Z) = wᵀXᵀXw / (n − 1)
+
+Since:
+
+C = XᵀX / (n − 1)
+
+Therefore:
+
+Var(Z) = wᵀCw
+
+---
+
+## 9. PCA Optimization
+
+Objective:
+
+MAXIMIZE: wᵀCw
+
+Subject to:
+
+wᵀw = 1
+
+Using Lagrange multipliers:
+
+L(w, λ) = wᵀCw − λ(wᵀw − 1)
+
+Differentiate:
+
+∂L/∂w = 2Cw − 2λw
+
+Set equal to zero:
+
+2Cw − 2λw = 0
+
+Cw − λw = 0
+
+Final equation:
+
+Cw = λw
+
+This is the eigenvalue equation.
+
+---
+
+## 10. Eigenvalues
+
+Characteristic equation:
+
+det(C − λI) = 0
+
+For a 2 × 2 covariance matrix:
+
+C = | a  b |
+    | c  d |
+
+Characteristic equation:
+
+(a − λ)(d − λ) − bc = 0
+
+After calculating eigenvalues, sort them:
+
+λ₁ ≥ λ₂ ≥ ... ≥ λd
+
+---
+
+## 11. Eigenvectors
+
+For each eigenvalue:
+
+(C − λI)w = 0
+
+Normalize the eigenvector:
+
+w_normalized = w / √(wᵀw)
+
+The eigenvector associated with the largest eigenvalue gives PC1.
+
+---
+
+## 12. Orthogonality
+
+Two principal components are orthogonal when:
+
+w₁ᵀw₂ = 0
+
+For normalized eigenvectors:
+
+wᵢᵀwᵢ = 1
+
+Combined:
+
+WᵀW = I
+
+---
+
+## 13. Explained Variance Ratio
+
+EVRᵢ = λᵢ / (λ₁ + λ₂ + ... + λd)
+
+Percentage:
+
+EVRᵢ(%) = [λᵢ / Σλ] × 100
+
+---
+
+## 14. Cumulative Explained Variance
+
+Cumulative EVR = (λ₁ + λ₂ + ... + λₖ) / (λ₁ + λ₂ + ... + λd)
+
+---
+
+## 15. PCA Transformation
+
+Select the top k eigenvectors:
+
+W = [w₁, w₂, ..., wₖ]
+
+Dimensions:
+
+W = d × k
+
+Transform the centered dataset:
+
+Z = XW
+
+Dimensions:
+
+(n × d) × (d × k) = (n × k)
+
+---
+
+## 16. Reconstruction
+
+Reconstructed dataset:
+
+X̂ = ZWᵀ
+
+Since Z = XW:
+
+X̂ = XWWᵀ
+
+Reconstruction error:
+
+E = X − X̂
+
+Squared reconstruction error:
+
+||X − X̂||²F
+
+Minimum squared reconstruction error:
+
+(n − 1) × Σ(j=k+1 to d) λⱼ
+
+---
+
+## 17. Singular Value Decomposition (SVD)
+
+X = UΣVᵀ
+
+Covariance matrix:
+
+C = XᵀX / (n − 1)
+
+Eigenvalue and singular value relationship:
+
+λᵢ = σᵢ² / (n − 1)
+
+Where:
+
+- U = Left singular vectors
+- Σ = Singular value matrix
+- V = Right singular vectors
+- σᵢ = Singular value
+- λᵢ = Eigenvalue
+
+---
+
+## 18. Correlation
+
+Correlation between two features:
+
+rₓᵧ = Cov(X,Y) / (σₓ × σᵧ)
+
+Range:
+
+−1 ≤ rₓᵧ ≤ +1
+
+---
+
+# Most Important PCA Equations
+
+1. Mean:
+
+   μ = Σxᵢ / n
+
+2. Sample Variance:
+
+   s² = Σ(xᵢ − x̄)² / (n − 1)
+
+3. Covariance:
+
+   Cov(X,Y) = Σ[(xᵢ − x̄)(yᵢ − ȳ)] / (n − 1)
+
+4. Covariance Matrix:
+
+   C = XᵀX / (n − 1)
+
+5. Projection:
+
+   Z = Xw
+
+6. Projected Variance:
+
+   Var(Z) = wᵀCw
+
+7. PCA Optimization:
+
+   Maximize wᵀCw
+
+8. Eigenvalue Equation:
+
+   Cw = λw
+
+9. Explained Variance:
+
+   EVRᵢ = λᵢ / Σλ
+
+10. PCA Transformation:
+
+    Z = XW
+
+11. Reconstruction:
+
+    X̂ = ZWᵀ
+
+12. SVD:
+
+    X = UΣVᵀ
+
+---
+
+## Final Intuition
+
+PCA finds orthogonal directions that maximize the variance of projected observations.
+
+Eigenvectors determine the directions.
+
+Eigenvalues determine the variance captured along those directions.
+
+The final transformation is:
+
+Z = XW
